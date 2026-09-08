@@ -49,3 +49,45 @@ The mechanical CAD chassis, gear systems, and physical dimensions referenced by 
    ┌─────────────────────────────┐
    │      src/controller.py      │  <-- UART / Serial Packet Pipeline (G-code style commands)
    └─────────────────────────────┘
+
+
+6-axis-robotic-arm/
+├── docs/                                 # Assembly manuals, schematics, pinout guides
+│   ├── 742414-6-axis-robotic-arm.pdf
+│   └── robotic-arm-instruction-manual.pdf
+├── hardware/                             # STL files cataloged by joint subassembly
+│   ├── Base/
+│   ├── Bicep_Tricep/
+│   ├── Elbow/
+│   ├── Forearm/
+│   └── Gears/
+├── src/                                  # Motion control & kinematic mathematics
+│   ├── __init__.py
+│   ├── controller.py                     # Serial port stream with simulated fallback
+│   └── kinematics.py                     # 6-DOF forward and inverse kinematic solvers
+├── vision/                               # AI dual-model perception package
+│   ├── __init__.py
+│   ├── detector.py                       # YOLOv8 object identification
+│   └── segmenter.py                      # FastSAM mask segmenter & moment centroid
+├── vision_pipeline.py                    # Top-level executable running camera-to-joint loop
+├── requirements.txt                      # Project dependencies
+└── README.md                             # System manual and documentation.
+
+##  Installation & Setup Instructions
+
+```bash
+# 1. Clone the repository
+git clone [https://github.com/](https://github.com/)<your-username>/6-axis-robotic-arm.git
+cd 6-axis-robotic-arm
+
+# 2. Create and activate a virtual environment
+# On Linux / macOS:
+python3 -m venv venv
+source venv/bin/activate
+# On Windows (PowerShell / Command Prompt):
+python -m venv venv
+venv\Scripts\activate
+
+# 3. Upgrade pip and install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
