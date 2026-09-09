@@ -1,10 +1,3 @@
-# ==============================================================================
-# FILE: src/controller.py
-# Location: src/controller.py
-# Description: Production-grade hardware bridge providing serial communication,
-#              packet framing, automatic software simulation fallback, timeout
-#              handling, and thread-safe streaming to microcontroller drivers.
-# ==============================================================================
 
 import time
 import logging
