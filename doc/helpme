@@ -1,0 +1,45 @@
+# 📖 Documentation Directory Index
+
+This directory holds the engineering reference documents, mechanical assembly manuals, and pinout schematics for the 3D-printed 6-axis robotic arm system.
+
+---
+
+## 📑 Included References
+
+1. **`robotic-arm-instruction-manual.pdf`**
+   * Detailed step-by-step mechanical assembly guide for bearings, planetary gearboxes, belts, and hardware fasteners.
+   * Source: Event Horizon Research (Printables #742414).
+
+2. **`742414-6-axis-robotic-arm.pdf`**
+   * Component breakdown, original BOM (Bill of Materials), and printing parameters.
+
+---
+
+## ⚡ Wiring & Pinout Quick Reference
+
+### Stepper Motor to Driver Mapping (Standard RAMPS / CNC Shield / Custom Bridge)
+
+| Joint | Axis ID | Motion Role | Gear Type | Driver Step Pin | Driver Dir Pin | Driver Enable Pin |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **J1** | Base Yaw | Base Rotation ($\pm 170^\circ$) | Planetary Reduction | Step 1 | Dir 1 | Enable (Common) |
+| **J2** | Shoulder | Lower Arm Pitch ($-60^\circ$ to $+120^\circ$) | Dual-Stage Gear | Step 2 | Dir 2 | Enable (Common) |
+| **J3** | Elbow | Forearm Pitch ($\pm 110^\circ$) | Planetary Reduction | Step 3 | Dir 3 | Enable (Common) |
+| **J4** | Wrist Roll | Forearm Torsion ($\pm 180^\circ$) | Direct / Planetary | Step 4 | Dir 4 | Enable (Common) |
+| **J5** | Wrist Pitch | Flange Tilt ($\pm 90^\circ$) | Bevel / Pivot | Step 5 | Dir 5 | Enable (Common) |
+| **J6** | Tool Roll | End-Effector Rotation ($\pm 360^\circ$) | Direct Drive | Step 6 | Dir 6 | Enable (Common) |
+
+---
+
+## 🔌 Serial Communication Protocol Specification
+
+* **Baud Rate:** `115200`
+* **Data Bits:** `8`
+* **Parity:** `None`
+* **Stop Bits:** `1`
+* **Flow Control:** `None`
+
+### Motion Command Format
+Sent as an ASCII string ending with a newline (`\n`):
+
+```text
+G0 J1:<deg> J2:<deg> J3:<deg> J4:<deg> J5:<deg> J6:<deg>\n
